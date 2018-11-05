@@ -1,0 +1,1 @@
+class AmbiguousV3Error < StandardError; end

@@ -67,4 +67,9 @@ class AddressV2
         other.country === @country
     )
   end
+
+  def each(&block)
+    @registered_partners.each(&block)
+    self
+  end
 end
