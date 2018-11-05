@@ -3,6 +3,11 @@ require './Task2/unique_v2'
 require './Task2/partner_v2'
 
 # Author: Roman Schmidt, Daniel Osterholz
+#
+# Includes Unique model.
+# Has a hash method to be comparable in hash.
+# Has a eql? method which is defined as an synonym for == to make objects comparable.
+# Has an each_partner method to to iterate over all partners that have this address.
 class AddressV2
   include UniqueV2
   attr_reader(:city, :country, :house_no, :street, :zip)
@@ -68,7 +73,7 @@ class AddressV2
     )
   end
 
-  def each(&block)
+  def each_partner(&block)
     @registered_partners.each(&block)
     self
   end

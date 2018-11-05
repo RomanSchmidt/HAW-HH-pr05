@@ -1,6 +1,8 @@
 require './Task3/Error/ambiguous_v3_error'
 
 # Author: Roman Schmidt, Daniel Osterholz
+#
+# Raises AmbiguousV3Error if an equal object already exists
 module UniqueV3
 
   protected

@@ -1,6 +1,8 @@
 require './Task2/Error/ambiguous_v2_error'
 
 # Author: Roman Schmidt, Daniel Osterholz
+#
+# Raises AmbiguousV2Error if an equal object already exists
 module UniqueV2
 
   protected

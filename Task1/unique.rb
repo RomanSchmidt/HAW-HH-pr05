@@ -1,6 +1,8 @@
 require './Task1/Error/ambiguous_error'
 
 # Author: Roman Schmidt, Daniel Osterholz
+#
+# Raises AmbiguousError if an equal object already exists
 module Unique
 
   protected

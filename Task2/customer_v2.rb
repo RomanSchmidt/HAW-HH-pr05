@@ -4,6 +4,11 @@ require './Task2/unique_v2'
 require 'date'
 
 # Author: Roman Schmidt, Daniel Osterholz
+#
+# Includes Unique model.
+# Has a hash method to be comparable in hash.
+# Has a eql? method which is defined as an synonym for == to make objects comparable.
+# Overrides ensure_unique to delegate its own elements set.
 class CustomerV2 < PartnerV2
   include UniqueV2
   alias_method :eql?, :==

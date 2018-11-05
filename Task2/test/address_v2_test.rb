@@ -112,14 +112,14 @@ class AddressV2Test < Test::Unit::TestCase
   def test_succ_each
     address = AddressV2.new('street_test_each_1', 1, 'zip', 'city', 'country')
     found = 0
-    address.each do |partner|
+    address.each_partner do |partner|
       found += 1
     end
     assert_equal(0, found)
     partner = []
     partner << PartnerV2.new('first_name_test_each1', 'last_name', address)
     found = 0
-    address.each do |partner_of_each|
+    address.each_partner do |partner_of_each|
       found += 1
       assert_true(partner_of_each === partner[0])
     end
@@ -127,7 +127,7 @@ class AddressV2Test < Test::Unit::TestCase
 
     partner << PartnerV2.new('first_name_test_each2', 'last_name', address)
     found = 0
-    address.each do |partner_of_each|
+    address.each_partner do |partner_of_each|
       assert_true(partner_of_each === partner[found])
       found += 1
     end

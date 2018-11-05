@@ -3,6 +3,10 @@ require './Task3/unique_v3'
 require './Task3/customer_v3'
 
 # Author: Roman Schmidt, Daniel Osterholz
+#
+# Includes Unique model.
+# Has a hash method to be comparable in hash.
+# Has a eql? method which is defined as an synonym for == to make objects comparable.
 class AddressV3
   include UniqueV3
   attr_reader(:city, :country, :house_no, :street, :zip)

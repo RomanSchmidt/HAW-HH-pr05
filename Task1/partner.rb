@@ -2,6 +2,10 @@ require './Task1/unique'
 require 'set'
 
 # Author: Roman Schmidt, Daniel Osterholz
+#
+# Includes Unique model.
+# Has a hash method to be comparable in hash.
+# Has a eql? method which is defined as an synonym for == to make objects comparable.
 class Partner
   include Unique
   alias_method :eql?, :==
