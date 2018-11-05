@@ -6,8 +6,8 @@ require './Task1/Error/ambiguous_error'
 
 class CustomerTest < Test::Unit::TestCase
   def test_create_succ
-    address = Customer.new('first_name1', 'last_name1', Date.parse('31-12-2010'))
-    assert_true(address.is_a? Customer)
+    customer = Customer.new('first_name1', 'last_name1', Date.parse('31-12-2010'))
+    assert_true(customer.is_a? Customer)
   end
 
   def test_create_err_double

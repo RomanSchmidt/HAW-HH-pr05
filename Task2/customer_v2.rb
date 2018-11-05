@@ -1,11 +1,11 @@
 require 'set'
-require_relative '../Task1/partner'
-require './Task1/unique'
+require_relative '../Task2/partner_v2'
+require './Task2/unique_v2'
 require 'date'
 
 # Author: Roman Schmidt, Daniel Osterholz
-class Customer < Partner
-  include Unique
+class CustomerV2 < PartnerV2
+  include UniqueV2
   alias_method :eql?, :==
 
   attr_reader(:birthday)
@@ -14,19 +14,19 @@ class Customer < Partner
 
   @@registered_elements = Set.new
 
-  def initialize(first_name, last_name, birthday)
+  def initialize(first_name, last_name, birthday, address)
     raise ArgumentError unless birthday.is_a? Date
 
     @birthday = birthday
     @valet_sum = 0
-    super(first_name, last_name)
+    super(first_name, last_name, address)
   end
 
   protected
 
   def ensure_unique(parent_elements)
     if parent_elements.include?(self)
-      raise AmbiguousError
+      raise AmbiguousV2Error
     end
     super(@@registered_elements)
   end
@@ -34,7 +34,7 @@ class Customer < Partner
   public
 
   def eql?(other)
-    raise TypeError unless other.is_a? Customer
+    raise TypeError unless other.is_a? CustomerV2
     other.birthday === @birthday
   end
 

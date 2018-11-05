@@ -1,0 +1,1 @@
+class AmbiguousV2Error < StandardError; end
