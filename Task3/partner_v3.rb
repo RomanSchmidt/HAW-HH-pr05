@@ -1,16 +1,15 @@
-require './Task2/unique_v2'
-require './Task2/address_v2'
+require './Task3/unique_v3'
 require 'set'
 
 # Author: Roman Schmidt, Daniel Osterholz
-class PartnerV2
-  include UniqueV2
+class PartnerV3
+  include UniqueV3
   alias_method :eql?, :==
   @@registered_elements = Set.new
 
   attr_reader(:first_name, :last_name)
 
-  def initialize(first_name, last_name, address)
+  def initialize(first_name, last_name)
     raise ArgumentError unless first_name.is_a? String
     first_name.strip!
     raise ArgumentError if first_name.length === 0
@@ -18,20 +17,14 @@ class PartnerV2
     raise ArgumentError unless last_name.is_a? String
     last_name.strip!
     raise ArgumentError if last_name.length === 0
-    raise ArgumentError unless address.is_a? AddressV2
 
     @first_name = first_name
     @last_name = last_name
-
     ensure_unique(@@registered_elements)
-    @address = address
-    @address.add_partner(self)
   end
 
-  public
-
   def eql?(other)
-    unless other.is_a? PartnerV2
+    unless other.is_a? PartnerV3
       raise TypeError
     end
     other.first_name === @first_name && other.last_name === @last_name

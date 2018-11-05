@@ -99,7 +99,7 @@ class CustomerV2Test < Test::Unit::TestCase
     address = AddressV2.new('street_customer_test_12', 12, 'zip12', 'city12', 'country12')
     customer = PartnerV2.new('first_name11', 'last_name2', address)
     assert_true(customer.is_a? PartnerV2)
-    assert_nothing_raised(AmbiguousError) do
+    assert_nothing_raised(AmbiguousV2Error) do
       CustomerV2.new('first_name11', 'last_name2', Date.parse('31-12-2010'), address)
     end
   end

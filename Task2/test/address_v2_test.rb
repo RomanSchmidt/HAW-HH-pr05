@@ -13,7 +13,7 @@ class AddressV2Test < Test::Unit::TestCase
   def test_create_err_double
     address = AddressV2.new('street2', 2, 'zip2', 'city2', 'country2')
     assert_true(address.is_a? AddressV2)
-    assert_raise(AmbiguousError) do
+    assert_raise(AmbiguousV2Error) do
       AddressV2.new('street2', 2, 'zip2', 'city2', 'country2')
     end
   end

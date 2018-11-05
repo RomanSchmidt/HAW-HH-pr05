@@ -1,10 +1,10 @@
 require 'set'
-require './Task2/unique_v2'
-require './Task2/partner_v2'
+require './Task3/unique_v3'
+require './Task3/customer_v3'
 
 # Author: Roman Schmidt, Daniel Osterholz
-class AddressV2
-  include UniqueV2
+class AddressV3
+  include UniqueV3
   attr_reader(:city, :country, :house_no, :street, :zip)
   alias_method :eql?, :==
 
@@ -12,12 +12,13 @@ class AddressV2
 
   @@registered_elements = Set.new
 
-  def initialize(street, house_no, zip, city, country)
+  def initialize(customer, street, house_no, zip, city, country)
     raise ArgumentError unless street.is_a? String
     street.strip!
     raise ArgumentError if street.length === 0
 
     raise ArgumentError unless (house_no.is_a? Integer) && house_no > 0
+    raise ArgumentError unless (customer.is_a? CustomerV3)
 
     raise ArgumentError unless zip.is_a? String
     zip.strip!
@@ -31,20 +32,13 @@ class AddressV2
     country.strip!
     raise ArgumentError if country.length === 0
 
-    @registered_partners = []
     @street = street
     @house_no = house_no
     @zip = zip
     @city = city
     @country = country
+    @customer = customer
     ensure_unique(@@registered_elements)
-  end
-
-  public
-
-  def add_partner(partner)
-    raise ArgumentError unless partner.is_a? PartnerV2
-    @registered_partners.push(partner)
   end
 
   def hash
@@ -56,8 +50,10 @@ class AddressV2
         (prime + (@country === nil ? 0 : @country.hash))
   end
 
+  public
+
   def eql?(other)
-    unless other.is_a? AddressV2
+    unless other.is_a? AddressV3
       raise TypeError
     end
     (other.street === @street &&
@@ -66,10 +62,5 @@ class AddressV2
         other.city === @city &&
         other.country === @country
     )
-  end
-
-  def each(&block)
-    @registered_partners.each(&block)
-    self
   end
 end
